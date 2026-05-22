@@ -38,7 +38,7 @@
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-            position: relative;
+            position: relative; /* Butonu sabitlemek için bu şart */
         }
 
         body.dark-mode .container {
@@ -46,11 +46,11 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 🌗 Belirgin Karanlık Mod Buton Stili (Geniş Kapsül) */
+        /* 🌗 ✨ Yeni, Konumu Sabit ve Metin İçeren Koyu Mod Butonu */
         .theme-toggle-btn {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 25px; /* Beyaz kartın üstünden boşluk */
+            right: 25px; /* Beyaz kartın sağından boşluk */
             background-color: #ffffff;
             border: 1px solid #eaeaea;
             padding: 6px 12px;
@@ -84,6 +84,7 @@
             margin-bottom: 30px;
             border-bottom: 1px solid #eaeaea;
             padding-bottom: 25px;
+            padding-right: 120px; /* Butonun üstüne yazı gelmesin diye sağ boşluk */
         }
 
         body.dark-mode header {
@@ -193,7 +194,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 16px 12px;
+            padding: 18px 12px;
             border-bottom: 1px solid #f0f0f0;
             border-radius: 8px;
             transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
@@ -219,41 +220,45 @@
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Resim Alanı */
+        .cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        /* Resim Hücresi ve Zoom Efekti */
         .cell-img {
-            flex-shrink: 0;
+            width: 70px;
         }
 
         .perfume-img {
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             object-fit: contain; 
-            border-radius: 8px;
+            border-radius: 6px;
             background-color: #ffffff;
             border: 1px solid #eaeaea;
-            padding: 3px;
+            padding: 2px;
             transition: transform 0.2s ease;
         }
 
+        body.dark-mode .perfume-img {
+            border-color: #2a2a32;
+            background-color: #ffffff;
+        }
+
+        /* Satıra Hover Olunca Resim Hafifçe Büyür */
         .perfume-item:hover .perfume-img {
-            transform: scale(1.06);
+            transform: scale(1.08);
         }
 
-        /* İsim Alanı */
+        /* İsim Hücresi */
         .cell-info {
-            flex-grow: 1;
-            min-width: 0;
-        }
-
-        .perfume-name-container {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            padding-left: 10px;
         }
 
         .perfume-name {
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 500;
             color: #1a1a1a;
             text-decoration: none;
             display: inline-block;
@@ -271,18 +276,17 @@
             color: #3b82f6;
         }
 
-        /* Parfümü İncele Butonu */
+        /* Parfümü İncele Rozeti */
         .fragrantica-badge {
-            align-self: flex-start;
+            display: inline-block;
             font-size: 11px;
             color: #71717a;
             background-color: #f4f4f5;
             padding: 2px 8px;
             border-radius: 4px;
+            margin-left: 8px;
             font-weight: normal;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
         body.dark-mode .fragrantica-badge {
@@ -290,16 +294,22 @@
             color: #a1a1aa;
         }
 
-        /* Fiyat Grubu Alanı */
-        .cell-prices-group {
-            display: flex;
-            gap: 20px;
-            flex-shrink: 0;
-            text-align: right;
+        /* Satıra hover olunca rozet hafifçe sağa kayar */
+        .perfume-item:hover .fragrantica-badge {
+            transform: translateX(3px);
+            background-color: #e4e4e7;
         }
 
+        body.dark-mode .perfume-item:hover .fragrantica-badge {
+            background-color: #3f3f46;
+        }
+
+        /* Fiyat Hücreleri */
         .cell-price {
-            width: 75px;
+            width: 110px;
+            text-align: right;
+            font-size: 14px;
+            white-space: nowrap;
         }
 
         .price-label {
@@ -317,7 +327,6 @@
         }
 
         .price-value {
-            font-size: 14px;
             font-weight: 600;
             color: #1a1a1a;
         }
@@ -326,96 +335,50 @@
             color: #ffffff;
         }
 
-        /* 📱 MOBİL ÖZEL DÜZENLEMELER (YENİ DÜZEN) */
-        @media (max-width: 600px) {
-            body {
-                padding: 15px 10px;
-            }
-
-            .container {
-                padding: 20px 15px;
-                border-radius: 12px;
-            }
-
-            /* Mobilde butonun konumu ve boyutu dengelendi */
+        /* Mobil Uyumluluk */
+        @media (max-width: 550px) {
             .theme-toggle-btn {
                 top: 15px;
                 right: 15px;
                 padding: 4px 10px;
                 font-size: 11px;
             }
-
             header {
-                margin-bottom: 20px;
-                padding-bottom: 15px;
-                text-align: left; /* Butonla çakışmamak için sola yaslama */
-                padding-right: 100px; /* Butonun üstüne yazı gelmesin diye sağ boşluk */
+                text-align: left; /* Mobilde başlığı sola yasla */
+                padding-right: 100px; /* Butonun üstüne yazı gelmesin */
             }
-
             header h1 {
-                font-size: 18px;
+                font-size: 20px;
             }
-            
-            header p {
-                font-size: 12px;
-            }
-
-            /* Butonların mobilde sıkışmasını önleme */
-            .category-filter {
-                gap: 6px;
-                margin-bottom: 20px;
-            }
-
-            .filter-btn {
-                padding: 8px 14px;
-                font-size: 12px;
-                border-radius: 8px;
-            }
-
-            .search-container {
-                margin-bottom: 20px;
-            }
-
-            .search-box {
-                padding: 12px 14px;
-                font-size: 14px;
-            }
-
-            /* 🚀 Mobil Satır Düzeni Ayarı (TÜM ELEMANLAR TEK SATIRDA) */
             .perfume-item {
-                padding: 12px 6px;
-                gap: 10px;
+                display: block;
+                position: relative;
+                padding: 15px 4px;
             }
-
-            .perfume-img {
-                width: 44px;
-                height: 44px;
+            .cell {
+                display: block;
+                width: 100%;
+                text-align: left;
             }
-
-            .perfume-name {
-                font-size: 13px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis; /* Çok uzun isimlere koruma */
-                max-width: 140px; /* İsmin taşmaması için sınır */
+            .cell-img {
+                float: left;
+                width: 65px;
+                margin-bottom: 10px;
             }
-
-            .fragrantica-badge {
-                font-size: 10px;
-                padding: 1px 6px;
+            .cell-info {
+                padding-left: 0;
+                margin-bottom: 10px;
             }
-
-            /* Fiyatları yan yana düzgünce sığdırma */
-            .cell-prices-group {
-                gap: 10px;
-            }
-
             .cell-price {
-                width: 60px;
+                display: inline-block;
+                width: 45px;
+                margin-right: 35px;
+                text-align: left;
             }
-
-            .price-value {
-                font-size: 12px;
+            .perfume-item::after {
+                content: "";
+                display: table;
+                clear: both;
             }
         }
     </style>
@@ -425,7 +388,7 @@
 <div class="container">
     
     <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Temayı Değiştir">
-        <span>☀️</span> <span id="themeText">Koyu Mod</span>
+        ☀️ <span id="themeText">Koyu Mod</span>
     </button>
 
     <header>
@@ -447,74 +410,59 @@
     <div class="perfume-list" id="perfumeList">
         
         <div class="perfume-item" data-gender="erkek">
-            <div class="cell-img">
+            <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/eyodlv4h.0j2_IMG_01_2110075928876.jpg" alt="Bleu de Chanel" class="perfume-img">
             </div>
-            <div class="cell-info">
-                <div class="perfume-name-container">
-                    <span class="perfume-name">Bleu de Chanel EDP</span>
-                    <a href="https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9050.html" target="_blank" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
+            <div class="cell cell-info">
+                <a href="https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9050.html" target="_blank" class="perfume-name">
+                    Bleu de Chanel EDP <span class="fragrantica-badge">Parfümü İncele ↗</span>
+                </a>
             </div>
-            <div class="cell-prices-group">
-                <div class="cell-price">
-                    <span class="price-label">50 ML</span>
-                    <span class="price-value">3.500 TL</span>
-                </div>
-                <div class="cell-price">
-                    <span class="price-label">100 ML</span>
-                    <span class="price-value">5.000 TL</span>
-                </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">3.500 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">5.000 TL</span>
             </div>
         </div>
 
         <div class="perfume-item" data-gender="unisex">
-            <div class="cell-img">
-                <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.46066.2x.avif" alt="Baccarat Rouge 540" class="perfume-img">
+            <div class="cell cell-img">
+                <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.46066.2x.avif" alt="Baccarat Rouge 540 Extrait" class="perfume-img">
             </div>
-            <div class="cell-info">
-                <div class="perfume-name-container">
-                    <span class="perfume-name">Baccarat Rouge 540 Extrait</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Maison-Francis-Kurkdjian/Baccarat-Rouge-540-Extrait-de-Parfum-46066.html" target="_blank" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
+            <div class="cell cell-info">
+                <a href="https://www.fragrantica.tr/perfumes/Maison-Francis-Kurkdjian/Baccarat-Rouge-540-Extrait-de-Parfum-46066.html" target="_blank" class="perfume-name">
+                    Baccarat Rouge 540 Extrait <span class="fragrantica-badge">Parfümü İncele ↗</span>
+                </a>
             </div>
-            <div class="cell-prices-group">
-                <div class="cell-price">
-                    <span class="price-label">50 ML</span>
-                    <span class="price-value">1.000 TL</span>
-                </div>
-                <div class="cell-price">
-                    <span class="price-label">100 ML</span>
-                    <span class="price-value">2.000 TL</span>
-                </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">1.000 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">2.000 TL</span>
             </div>
         </div>
 
         <div class="perfume-item" data-gender="kadin">
-            <div class="cell-img">
+            <div class="cell cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/504/creed-aventus_min.jpg?revision=1778581528" alt="Creed Aventus" class="perfume-img">
             </div>
-            <div class="cell-info">
-                <div class="perfume-name-container">
-                    <span class="perfume-name">Creed Aventus for Her</span>
-                    <a href="https://www.fragrantica.com/perfume/Creed/Aventus-for-Her-38473.html" target="_blank" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
+            <div class="cell cell-info">
+                <a href="https://www.fragrantica.com/perfume/Creed/Aventus-for-Her-38473.html" target="_blank" class="perfume-name">
+                    Creed Aventus for Her <span class="fragrantica-badge">Parfümü İncele ↗</span>
+                </a>
             </div>
-            <div class="cell-prices-group">
-                <div class="cell-price">
-                    <span class="price-label">50 ML</span>
-                    <span class="price-value">7.500 TL</span>
-                </div>
-                <div class="cell-price">
-                    <span class="price-label">100 ML</span>
-                    <span class="price-value">11.000 TL</span>
-                </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">7.500 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">11.000 TL</span>
             </div>
         </div>
 
@@ -524,7 +472,7 @@
 <script>
     let currentGender = 'all';
 
-    // 🌗 Güncellenen Dinamik Tema Geçiş Fonksiyonu
+    // 🌗 Güncellenen Dinamik Tema Geçiş Fonksiyonu (Metni de değiştirir)
     function toggleTheme() {
         const body = document.body;
         const btn = document.getElementById('themeToggle');
@@ -533,9 +481,11 @@
         body.classList.toggle('dark-mode');
         
         if(body.classList.contains('dark-mode')) {
-            btn.innerHTML = '<span>🌙</span> <span id="themeText">Açık Mod</span>';
+            // Gece moduna geçince Ay ikonu ve "Açık Mod" yazısı
+            btn.innerHTML = '🌙 <span id="themeText">Açık Mod</span>';
         } else {
-            btn.innerHTML = '<span>☀️</span> <span id="themeText">Koyu Mod</span>';
+            // Gündüz moduna geçince Güneş ikonu ve "Koyu Mod" yazısı
+            btn.innerHTML = '☀️ <span id="themeText">Koyu Mod</span>';
         }
     }
 
@@ -543,43 +493,4 @@
     function filterGender(gender, button) {
         currentGender = gender;
         
-        const buttons = document.getElementsByClassName('filter-btn');
-        for (let btn of buttons) {
-            btn.classList.remove('active');
-        }
-        button.classList.add('active');
-
-        applyFilters();
-    }
-
-    function filterPerfumes() {
-        applyFilters();
-    }
-
-    function applyFilters() {
-        const searchInput = document.getElementById('searchInput');
-        const filterText = searchInput.value.toUpperCase();
-        const list = document.getElementById('perfumeList');
-        const items = list.getElementsByClassName('perfume-item');
-
-        for (let i = 0; i < items.length; i++) {
-            const item = items[i];
-            const itemGender = item.getAttribute('data-gender');
-            const nameSpan = item.getElementsByClassName('perfume-name')[0];
-            const textValue = nameSpan ? (nameSpan.textContent || nameSpan.innerText).toUpperCase() : '';
-
-            const genderMatch = (currentGender === 'all' || itemGender === currentGender);
-            const textMatch = (textValue.indexOf(filterText) > -1);
-
-            // Yatay satır düzenini korumak için mobilde 'flex' olarak gösteriyoruz
-            if (genderMatch && textMatch) {
-                item.style.display = "flex";
-            } else {
-                item.style.display = "none";
-            }
-        }
-    }
-</script>
-
-</body>
-</html>
+        const buttons
