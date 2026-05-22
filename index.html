@@ -38,7 +38,6 @@
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-            position: relative;
         }
 
         body.dark-mode .container {
@@ -46,11 +45,24 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 🌗 Koyu Mod Kapsül Butonu */
+        /* Başlık Alanı (Tam Ortalı Düzen) */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        body.dark-mode header {
+            border-bottom-color: #2a2a32;
+        }
+
+        /* 🌗 Yeni Tam Ortalı Üst Koyu Mod Butonu */
         .theme-toggle-btn {
-            position: absolute;
-            top: 35px;
-            right: 40px;
             background-color: #ffffff;
             border: 1px solid #eaeaea;
             padding: 6px 14px;
@@ -65,7 +77,7 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-            z-index: 100;
+            margin-bottom: 4px;
         }
 
         body.dark-mode .theme-toggle-btn {
@@ -74,29 +86,18 @@
             color: #d1d5db;
         }
 
-        /* Başlık Alanı */
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 25px;
-        }
-
-        body.dark-mode header {
-            border-bottom-color: #2a2a32;
-        }
-
         header h1 {
             font-size: 24px;
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            width: 100%;
         }
 
         header p {
             color: #666;
             font-size: 14px;
+            width: 100%;
         }
 
         body.dark-mode header p {
@@ -174,7 +175,7 @@
             border-color: #2563eb;
         }
 
-        /* 💻 MASAÜSTÜ KUSURSUZ TABLO YAPISI (Geri Getirildi) */
+        /* 💻 MASAÜSTÜ JİLET GİBİ TABLO DÜZENİ */
         .perfume-list {
             display: table;
             width: 100%;
@@ -195,12 +196,11 @@
             border-bottom-color: #1e1e24;
         }
 
-        /* Hücre Genişlikleri */
+        /* Hücre Sabitlemeleri */
         .cell-img { width: 70px; }
         .cell-info { padding-left: 12px; }
         .cell-price { width: 110px; text-align: right; }
 
-        /* Görsel Kutusu */
         .perfume-img {
             width: 52px;
             height: 52px;
@@ -212,7 +212,6 @@
             display: block;
         }
 
-        /* İsim ve Link Alanı */
         .perfume-name-wrapper {
             display: flex;
             align-items: center;
@@ -229,7 +228,6 @@
 
         body.dark-mode .perfume-name { color: #f3f4f6; }
 
-        /* Parfümü İncele Butonu */
         .fragrantica-badge {
             display: inline-flex;
             align-items: center;
@@ -247,196 +245,9 @@
             color: #a1a1aa;
         }
 
-        /* Fiyatlar */
         .price-label {
             display: block;
             font-size: 10px;
             font-weight: 500;
             color: #71717a;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        body.dark-mode .price-label { color: #a1a1aa; }
-
-        .price-value {
-            font-size: 15px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        body.dark-mode .price-value { color: #ffffff; }
-
-        /* 🚀 MASAÜSTÜ SATIR HOVER EFEKTLERİ */
-        .perfume-item:hover .perfume-img {
-            transform: scale(1.05);
-        }
-        .perfume-item:hover .perfume-name {
-            color: #112d72;
-        }
-        body.dark-mode .perfume-item:hover .perfume-name {
-            color: #3b82f6;
-        }
-
-        /* 📱 %100 MOBİL KUSURSUZLUK AYARLARI */
-        @media (max-width: 600px) {
-            body { padding: 15px 10px; }
-            .container { padding: 20px 15px; border-radius: 12px; }
-
-            .theme-toggle-btn {
-                top: 20px;
-                right: 15px;
-                padding: 4px 10px;
-                font-size: 10px;
-            }
-
-            header {
-                text-align: left;
-                padding-right: 100px;
-                margin-bottom: 20px;
-                padding-bottom: 15px;
-            }
-            header h1 { font-size: 18px; }
-            header p { font-size: 12px; }
-
-            .category-filter { gap: 6px; margin-bottom: 20px; }
-            .filter-btn { padding: 8px 12px; font-size: 12px; border-radius: 8px; }
-            .search-container { margin-bottom: 20px; }
-            .search-box { padding: 12px 14px; font-size: 14px; }
-
-            /* ⚡ Mobilde Satırı Flex Yapıp Her Şeyi Tek Çizgiye Sığdırıyoruz */
-            .perfume-list { display: block; }
-            .perfume-item {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 12px 0;
-                border-bottom: 1px solid #f0f0f0;
-                gap: 10px;
-            }
-            body.dark-mode .perfume-item { border-bottom-color: #1e1e24; }
-
-            .cell { display: block; padding: 0; border: none; }
-            .cell-img { width: auto; flex-shrink: 0; }
-            .perfume-img { width: 46px; height: 46px; }
-
-            .cell-info {
-                flex-grow: 1;
-                min-width: 0;
-                padding-left: 4px;
-            }
-            .perfume-name-wrapper {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 3px;
-            }
-            .perfume-name {
-                font-size: 13px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 140px; /* İsmin sağa taşmasını önleyen set */
-            }
-            .fragrantica-badge { font-size: 10px; padding: 1px 6px; }
-
-            /* Fiyatları Yan Yana Sağ Köşeye Kilitler */
-            .cell-price {
-                width: auto;
-                flex-shrink: 0;
-                display: inline-block;
-                margin-left: 4px;
-            }
-            .price-value { font-size: 12px; }
-            .price-label { font-size: 9px; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    
-    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
-        ☀️ <span id="themeText">Koyu Mod</span>
-    </button>
-
-    <header>
-        <h1>PARFÜM KOLEKSİYONU</h1>
-        <p>Fiyat Listesi & Detaylı İnceleme Kataloğu</p>
-    </header>
-
-    <div class="category-filter">
-        <button class="filter-btn active" onclick="filterGender('all', this)">Hepsi</button>
-        <button class="filter-btn" onclick="filterGender('kadin', this)">Kadın</button>
-        <button class="filter-btn" onclick="filterGender('erkek', this)">Erkek</button>
-        <button class="filter-btn" onclick="filterGender('unisex', this)">Unisex</button>
-    </div>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="Parfüm adı ara..." onkeyup="filterPerfumes()">
-    </div>
-
-    <div class="perfume-list" id="perfumeList">
-        
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/eyodlv4h.0j2_IMG_01_2110075928876.jpg" alt="Bleu de Chanel" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Bleu de Chanel EDP</span>
-                    <a href="https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9050.html" target="_blank" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">3.500 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">5.000 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.46066.2x.avif" alt="Baccarat Rouge 540" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Baccarat Rouge 540 Extrait</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Maison-Francis-Kurkdjian/Baccarat-Rouge-540-Extrait-de-Parfum-46066.html" target="_blank" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.000 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/504/creed-aventus_min.jpg?revision=1778581528" alt="Creed Aventus" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Creed Aventus for Her</span>
-                    <a href="https://www.fragrantica.com/perfume/Creed/Aventus-for-Her-38473.html" target="_blank" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">7.500 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
