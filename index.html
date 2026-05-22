@@ -175,7 +175,7 @@
             border-color: #2563eb;
         }
 
-        /* 💻 MASAÜSTÜ TABLO DÜZENİ */
+        /* 💻 MASAÜSTÜ TABLO DÜZENI */
         .perfume-list {
             display: table;
             width: 100%;
@@ -268,6 +268,33 @@
         .perfume-item:hover .perfume-name { color: #112d72; }
         body.dark-mode .perfume-item:hover .perfume-name { color: #3b82f6; }
 
+        /* 🟢 💬 MİNMALİST SABİT WHATSAPP BUTON STİLİ */
+        .whatsapp-sticky-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            z-index: 9999;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-sticky-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            color: #ffffff;
+        }
+
         /* 📱 %100 MOBİL SİMETRİ VE STABİLİTE AYARLARI */
         @media (max-width: 600px) {
             body { padding: 15px 10px; }
@@ -286,7 +313,6 @@
             .search-container { margin-bottom: 20px; }
             .search-box { padding: 12px 14px; font-size: 14px; }
 
-            /* Mobilde CSS tabanlı jilet gibi satır düzeni */
             .perfume-list { display: flex; flex-direction: column; }
             .perfume-item {
                 display: flex !important;
@@ -330,10 +356,23 @@
             }
             .price-value { font-size: 12px; }
             .price-label { font-size: 9px; }
+
+            /* Mobilde butonun biraz daha kibar durması için */
+            .whatsapp-sticky-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 16px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
+
+<a href="https://wa.me/905392252513?text=Merhaba,%20parfüm%20kataloğunuzu%20inceledim.%20Detaylı%20bilgi%20alabilir%20miyim?" target="_blank" class="whatsapp-sticky-btn">
+    <span>💬</span>
+    <span>Sipariş & Bilgi</span>
+</a>
 
 <div class="container">
     
@@ -469,7 +508,6 @@
             const textMatch = (textValue.indexOf(filterText) > -1);
 
             if (genderMatch && textMatch) {
-                // Hatalı iç ekran boyutu sorgusunu kaldırdık, CSS'e bıraktık.
                 item.style.setProperty('display', '', 'important'); 
             } else {
                 item.style.setProperty('display', 'none', 'important');
