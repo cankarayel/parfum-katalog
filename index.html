@@ -46,7 +46,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 🌗 Yeni ve Belirgin Karanlık Mod Buton Stili */
+        /* 🌗 Belirgin Karanlık Mod Buton Stili (Geniş Kapsül) */
         .theme-toggle-btn {
             position: absolute;
             top: 25px;
@@ -256,9 +256,7 @@
             font-weight: 600;
             color: #1a1a1a;
             text-decoration: none;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: inline-block;
         }
 
         body.dark-mode .perfume-name {
@@ -277,19 +275,19 @@
         .fragrantica-badge {
             align-self: flex-start;
             font-size: 11px;
-            color: #65a30d; 
-            background-color: #f7fee7;
+            color: #71717a;
+            background-color: #f4f4f5;
             padding: 2px 8px;
             border-radius: 4px;
-            font-weight: 500;
+            font-weight: normal;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
         }
 
         body.dark-mode .fragrantica-badge {
-            background-color: #14532d;
-            color: #bbf7d0;
+            background-color: #2a2a32;
+            color: #a1a1aa;
         }
 
         /* Fiyat Grubu Alanı */
@@ -328,7 +326,7 @@
             color: #ffffff;
         }
 
-        /* 📱 MOBİL ÖZEL DÜZENLEMELER */
+        /* 📱 MOBİL ÖZEL DÜZENLEMELER (YENİ DÜZEN) */
         @media (max-width: 600px) {
             body {
                 padding: 15px 10px;
@@ -350,7 +348,7 @@
             header {
                 margin-bottom: 20px;
                 padding-bottom: 15px;
-                text-align: left; /* Butonla çakışmamak için sola yaslama mobilde daha temiz durur */
+                text-align: left; /* Butonla çakışmamak için sola yaslama */
                 padding-right: 100px; /* Butonun üstüne yazı gelmesin diye sağ boşluk */
             }
 
@@ -362,6 +360,7 @@
                 font-size: 12px;
             }
 
+            /* Butonların mobilde sıkışmasını önleme */
             .category-filter {
                 gap: 6px;
                 margin-bottom: 20px;
@@ -382,6 +381,7 @@
                 font-size: 14px;
             }
 
+            /* 🚀 Mobil Satır Düzeni Ayarı (TÜM ELEMANLAR TEK SATIRDA) */
             .perfume-item {
                 padding: 12px 6px;
                 gap: 10px;
@@ -394,7 +394,10 @@
 
             .perfume-name {
                 font-size: 13px;
-                max-width: 130px; 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis; /* Çok uzun isimlere koruma */
+                max-width: 140px; /* İsmin taşmaması için sınır */
             }
 
             .fragrantica-badge {
@@ -402,6 +405,7 @@
                 padding: 1px 6px;
             }
 
+            /* Fiyatları yan yana düzgünce sığdırma */
             .cell-prices-group {
                 gap: 10px;
             }
@@ -535,15 +539,22 @@
         }
     }
 
+    // 🎛️ Filtreleme Fonksiyonları
     function filterGender(gender, button) {
         currentGender = gender;
+        
         const buttons = document.getElementsByClassName('filter-btn');
-        for (let btn of buttons) { btn.classList.remove('active'); }
+        for (let btn of buttons) {
+            btn.classList.remove('active');
+        }
         button.classList.add('active');
+
         applyFilters();
     }
 
-    function filterPerfumes() { applyFilters(); }
+    function filterPerfumes() {
+        applyFilters();
+    }
 
     function applyFilters() {
         const searchInput = document.getElementById('searchInput');
@@ -560,7 +571,12 @@
             const genderMatch = (currentGender === 'all' || itemGender === currentGender);
             const textMatch = (textValue.indexOf(filterText) > -1);
 
-            item.style.display = (genderMatch && textMatch) ? "flex" : "none";
+            // Yatay satır düzenini korumak için mobilde 'flex' olarak gösteriyoruz
+            if (genderMatch && textMatch) {
+                item.style.display = "flex";
+            } else {
+                item.style.display = "none";
+            }
         }
     }
 </script>
