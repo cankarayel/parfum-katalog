@@ -46,27 +46,37 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 🌗 Karanlık Mod Butonu */
+        /* 🌗 Yeni ve Belirgin Karanlık Mod Buton Stili */
         .theme-toggle-btn {
             position: absolute;
             top: 25px;
             right: 25px;
-            background: none;
+            background-color: #ffffff;
             border: 1px solid #eaeaea;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            padding: 6px 12px;
+            border-radius: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 18px;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4b5563;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
             z-index: 10;
         }
 
         body.dark-mode .theme-toggle-btn {
             border-color: #2a2a32;
             background-color: #1e1e24;
+            color: #d1d5db;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
         }
 
         header {
@@ -267,7 +277,7 @@
         .fragrantica-badge {
             align-self: flex-start;
             font-size: 11px;
-            color: #65a30d; /* Daha lüks duran soft bir yeşil tonu */
+            color: #65a30d; 
             background-color: #f7fee7;
             padding: 2px 8px;
             border-radius: 4px;
@@ -318,7 +328,7 @@
             color: #ffffff;
         }
 
-        /* 📱 MOBİL ÖZEL DÜZENLEMELER (Kritik Alan) */
+        /* 📱 MOBİL ÖZEL DÜZENLEMELER */
         @media (max-width: 600px) {
             body {
                 padding: 15px 10px;
@@ -329,24 +339,29 @@
                 border-radius: 12px;
             }
 
+            /* Mobilde butonun konumu ve boyutu dengelendi */
             .theme-toggle-btn {
                 top: 15px;
                 right: 15px;
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
+                padding: 4px 10px;
+                font-size: 11px;
             }
 
             header {
                 margin-bottom: 20px;
                 padding-bottom: 15px;
+                text-align: left; /* Butonla çakışmamak için sola yaslama mobilde daha temiz durur */
+                padding-right: 100px; /* Butonun üstüne yazı gelmesin diye sağ boşluk */
             }
 
             header h1 {
-                font-size: 20px;
+                font-size: 18px;
+            }
+            
+            header p {
+                font-size: 12px;
             }
 
-            /* Butonların mobilde sıkışmasını önleme */
             .category-filter {
                 gap: 6px;
                 margin-bottom: 20px;
@@ -367,7 +382,6 @@
                 font-size: 14px;
             }
 
-            /* Mobil Satır Düzeni Ayarı */
             .perfume-item {
                 padding: 12px 6px;
                 gap: 10px;
@@ -380,7 +394,7 @@
 
             .perfume-name {
                 font-size: 13px;
-                max-width: 140px; /* İsmin taşmaması için sınır */
+                max-width: 130px; 
             }
 
             .fragrantica-badge {
@@ -388,7 +402,6 @@
                 padding: 1px 6px;
             }
 
-            /* Fiyatları yan yana düzgünce sığdırma */
             .cell-prices-group {
                 gap: 10px;
             }
@@ -407,7 +420,9 @@
 
 <div class="container">
     
-    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Temayı Değiştir">☀️</button>
+    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Temayı Değiştir">
+        <span>☀️</span> <span id="themeText">Koyu Mod</span>
+    </button>
 
     <header>
         <h1>PARFÜM KOLEKSİYONU</h1>
@@ -505,11 +520,19 @@
 <script>
     let currentGender = 'all';
 
+    // 🌗 Güncellenen Dinamik Tema Geçiş Fonksiyonu
     function toggleTheme() {
         const body = document.body;
         const btn = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+        
         body.classList.toggle('dark-mode');
-        btn.innerText = body.classList.contains('dark-mode') ? '🌙' : '☀️';
+        
+        if(body.classList.contains('dark-mode')) {
+            btn.innerHTML = '<span>🌙</span> <span id="themeText">Açık Mod</span>';
+        } else {
+            btn.innerHTML = '<span>☀️</span> <span id="themeText">Koyu Mod</span>';
+        }
     }
 
     function filterGender(gender, button) {
