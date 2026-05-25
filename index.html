@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Temiz Temel Ayarlar */
+        /* Modern & Minimalist Tasarım Kuralları */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
 
         body {
@@ -25,7 +25,7 @@
             padding: 40px 20px;
         }
 
-        /* 🌙 Karanlık Mod Renkleri */
+        /* 🌙 Karanlık Mod Temel Renk Tanımlamaları */
         body.dark-mode {
             background-color: #0c0c0e;
             color: #f3f4f6;
@@ -38,6 +38,7 @@
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+            position: relative;
         }
 
         body.dark-mode .container {
@@ -45,39 +46,26 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Başlık Alanı (Tam Ortalı Düzen) */
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        body.dark-mode header {
-            border-bottom-color: #2a2a32;
-        }
-
-        /* 🌗 Tam Ortalı Üst Koyu Mod Butonu */
+        /* 🌗 Yeni ve Belirgin Karanlık Mod Buton Stili */
         .theme-toggle-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
             background-color: #ffffff;
             border: 1px solid #eaeaea;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 600;
             color: #4b5563;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-            margin-bottom: 4px;
+            z-index: 10;
         }
 
         body.dark-mode .theme-toggle-btn {
@@ -86,18 +74,33 @@
             color: #d1d5db;
         }
 
+        .theme-toggle-btn:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 25px;
+        }
+
+        body.dark-mode header {
+            border-bottom-color: #2a2a32;
+        }
+
         header h1 {
             font-size: 24px;
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            width: 100%;
+            margin-bottom: 8px;
         }
 
         header p {
             color: #666;
             font-size: 14px;
-            width: 100%;
         }
 
         body.dark-mode header p {
@@ -131,6 +134,11 @@
             border-color: #2a2a32;
         }
 
+        .filter-btn:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+
         .filter-btn.active {
             background-color: #112d72;
             color: #ffffff;
@@ -145,17 +153,14 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
-        /* ✨ Yenilenen Arama Kutusu Alanı (İçi Temizleme Butonlu) */
+        /* Canlı Arama Kutusu Alanı */
         .search-container {
             margin-bottom: 30px;
-            position: relative;
-            display: flex;
-            align-items: center;
         }
 
         .search-box {
             width: 100%;
-            padding: 14px 45px 14px 18px; /* Sağdan buton için yer bıraktık */
+            padding: 14px 18px;
             font-size: 15px;
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -178,47 +183,46 @@
             border-color: #2563eb;
         }
 
-        /* Arama Temizleme (X) Butonu */
-        .search-clear-btn {
-            position: absolute;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #9ca3af;
-            font-size: 18px;
-            cursor: pointer;
-            display: none; /* Varsayılan olarak gizli, yazı yazınca çıkar */
-            user-select: none;
-        }
-
-        body.dark-mode .search-clear-btn {
-            color: #6b7280;
-        }
-
-        /* 💻 MASAÜSTÜ TABLO DÜZENI */
+        /* Satır Düzeni ve Efektler */
         .perfume-list {
-            display: table;
-            width: 100%;
+            display: block;
         }
 
         .perfume-item {
-            display: table-row;
-        }
-
-        .cell {
-            display: table-cell;
-            vertical-align: middle;
-            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 12px;
             border-bottom: 1px solid #f0f0f0;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            gap: 15px;
         }
 
-        body.dark-mode .cell {
+        body.dark-mode .perfume-item {
             border-bottom-color: #1e1e24;
         }
 
-        .cell-img { width: 70px; }
-        .cell-info { padding-left: 12px; }
-        .cell-price { width: 110px; text-align: right; }
+        .perfume-item:last-child {
+            border-bottom: none;
+        }
+
+        .perfume-item:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark-mode .perfume-item:hover {
+            background-color: #19191d;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Resim Alanı */
+        .cell-img {
+            flex-shrink: 0;
+        }
 
         .perfume-img {
             width: 52px;
@@ -227,41 +231,77 @@
             border-radius: 8px;
             background-color: #ffffff;
             border: 1px solid #eaeaea;
-            padding: 2px;
-            display: block;
+            padding: 3px;
+            transition: transform 0.2s ease;
         }
 
-        .perfume-name-wrapper {
+        .perfume-item:hover .perfume-img {
+            transform: scale(1.06);
+        }
+
+        /* İsim Alanı */
+        .cell-info {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .perfume-name-container {
             display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .perfume-name {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             color: #1a1a1a;
             text-decoration: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        body.dark-mode .perfume-name { color: #f3f4f6; }
+        body.dark-mode .perfume-name {
+            color: #f3f4f6;
+        }
 
+        .perfume-name:hover {
+            color: #112d72;
+        }
+
+        body.dark-mode .perfume-name:hover {
+            color: #3b82f6;
+        }
+
+        /* Parfümü İncele Butonu */
         .fragrantica-badge {
-            display: inline-flex;
-            align-items: center;
+            align-self: flex-start;
             font-size: 11px;
-            color: #71717a;
-            background-color: #f4f4f5;
+            color: #65a30d; 
+            background-color: #f7fee7;
             padding: 2px 8px;
             border-radius: 4px;
             font-weight: 500;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
         }
 
         body.dark-mode .fragrantica-badge {
-            background-color: #2a2a32;
-            color: #a1a1aa;
+            background-color: #14532d;
+            color: #bbf7d0;
+        }
+
+        /* Fiyat Grubu Alanı */
+        .cell-prices-group {
+            display: flex;
+            gap: 20px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .cell-price {
+            width: 75px;
         }
 
         .price-label {
@@ -274,116 +314,103 @@
             margin-bottom: 2px;
         }
 
-        body.dark-mode .price-label { color: #a1a1aa; }
+        body.dark-mode .price-label {
+            color: #a1a1aa;
+        }
 
         .price-value {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: #1a1a1a;
         }
 
-        body.dark-mode .price-value { color: #ffffff; }
-
-        .perfume-item:hover .perfume-img { transform: scale(1.05); }
-        .perfume-item:hover .perfume-name { color: #112d72; }
-        body.dark-mode .perfume-item:hover .perfume-name { color: #3b82f6; }
-
-        /* 🟢 💬 SABİT WHATSAPP BUTON STİLİ */
-        .whatsapp-sticky-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 30px;
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            z-index: 9999;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .whatsapp-sticky-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        body.dark-mode .price-value {
             color: #ffffff;
         }
 
-        /* 📱 %100 MOBİL SİMETRİ VE ESNEK İSİM DÜZENİ */
+        /* 📱 MOBİL ÖZEL DÜZENLEMELER */
         @media (max-width: 600px) {
-            body { padding: 15px 10px; }
-            .container { padding: 20px 15px; border-radius: 12px; }
+            body {
+                padding: 15px 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+                border-radius: 12px;
+            }
+
+            /* Mobilde butonun konumu ve boyutu dengelendi */
+            .theme-toggle-btn {
+                top: 15px;
+                right: 15px;
+                padding: 4px 10px;
+                font-size: 11px;
+            }
 
             header {
-                text-align: center;
                 margin-bottom: 20px;
                 padding-bottom: 15px;
+                text-align: left; /* Butonla çakışmamak için sola yaslama mobilde daha temiz durur */
+                padding-right: 100px; /* Butonun üstüne yazı gelmesin diye sağ boşluk */
             }
-            header h1 { font-size: 18px; }
-            header p { font-size: 12px; }
 
-            .category-filter { gap: 6px; margin-bottom: 20px; }
-            .filter-btn { padding: 8px 12px; font-size: 12px; border-radius: 8px; }
-            .search-container { margin-bottom: 20px; }
-            .search-box { padding: 12px 14px; font-size: 14px; }
+            header h1 {
+                font-size: 18px;
+            }
+            
+            header p {
+                font-size: 12px;
+            }
 
-            .perfume-list { display: flex; flex-direction: column; }
+            .category-filter {
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            .filter-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+
+            .search-container {
+                margin-bottom: 20px;
+            }
+
+            .search-box {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
             .perfume-item {
-                display: flex !important;
-                align-items: center;
-                justify-content: space-between;
-                padding: 12px 0;
-                border-bottom: 1px solid #f0f0f0;
-                gap: 12px;
+                padding: 12px 6px;
+                gap: 10px;
             }
-            body.dark-mode .perfume-item { border-bottom-color: #1e1e24; }
 
-            .cell { display: block; padding: 0; border: none; }
-            .cell-img { width: auto; flex-shrink: 0; }
-            .perfume-img { width: 46px; height: 46px; }
+            .perfume-img {
+                width: 44px;
+                height: 44px;
+            }
 
-            .cell-info {
-                flex-grow: 1;
-                min-width: 0;
-                padding-left: 2px;
-            }
-            .perfume-name-wrapper {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
             .perfume-name {
                 font-size: 13px;
-                font-weight: 600;
-                white-space: normal;
-                word-wrap: break-word;
-                overflow: visible;
-                text-overflow: clip;
-                max-width: 100%;
-                line-height: 1.3;
+                max-width: 130px; 
             }
-            .fragrantica-badge { font-size: 10px; padding: 1px 6px; margin-left: 0; }
+
+            .fragrantica-badge {
+                font-size: 10px;
+                padding: 1px 6px;
+            }
+
+            .cell-prices-group {
+                gap: 10px;
+            }
 
             .cell-price {
-                width: auto;
-                flex-shrink: 0;
-                display: inline-block;
-                margin-left: 6px;
-                text-align: right;
+                width: 60px;
             }
-            .price-value { font-size: 12px; }
-            .price-label { font-size: 9px; }
 
-            .whatsapp-sticky-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 16px;
+            .price-value {
                 font-size: 12px;
             }
         }
@@ -391,18 +418,13 @@
 </head>
 <body>
 
-<a href="https://wa.me/905392252513?text=Merhaba,%20parfüm%20kataloğunuzu%20inceledim.%20Detaylı%20bilgi%20alabilir%20miyim?" target="_blank" class="whatsapp-sticky-btn">
-    <span>💬</span>
-    <span>Sipariş & Bilgi</span>
-</a>
-
 <div class="container">
     
+    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Temayı Değiştir">
+        <span>☀️</span> <span id="themeText">Koyu Mod</span>
+    </button>
+
     <header>
-        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
-            ☀️ <span id="themeText">Koyu Mod</span>
-        </button>
-        
         <h1>PARFÜM KOLEKSİYONU</h1>
         <p>Fiyat Listesi & Detaylı İnceleme Kataloğu</p>
     </header>
@@ -416,1166 +438,79 @@
 
     <div class="search-container">
         <input type="text" id="searchInput" class="search-box" placeholder="Parfüm adı ara..." onkeyup="filterPerfumes()">
-        <button id="searchClear" class="search-clear-btn" onclick="clearSearch()">×</button>
     </div>
 
     <div class="perfume-list" id="perfumeList">
         
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://bluemercury.com/cdn/shop/files/variant_images-size-17oz-8028713470011-1.jpg?v=1775751073&width=1500" alt="Acqua di Parma - Magnolia Nobile" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Acqua di Parma - Magnolia Nobile</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Acqua-di-Parma/Acqua-di-Parma-Magnolia-Nobile-6483.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/ps4owecf.kms_IMG_01_701666410980.jpg" alt="Amouage - Guidance 46" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Amouage - Guidance 46</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Amouage/Guidance-46-94033.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.250 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.400 TL</span>
-            </div>
-        </div>
-
         <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://cdn.cimri.io/image/320x320/emporio-armani-stronger-with-you-100-ml-edt-erkek-parfum_814274915.jpg" alt="Armani - Stronger With You" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Armani - Stronger With You</span>
-                    <a href="https://www.fragrantica.com/perfume/Giorgio-Armani/Emporio-Armani-Stronger-With-You-45258.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.46066.2x.avif" alt="Maison Francis Kurkdijan - Baccarat Rouge 540" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Maison Francis Kurkdijan - Baccarat Rouge 540 Extrait</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Maison-Francis-Kurkdjian/Baccarat-Rouge-540-Extrait-de-Parfum-46066.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.000 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
+            <div class="cell-img">
                 <img src="https://cdn.beymen.com/productimages/eyodlv4h.0j2_IMG_01_2110075928876.jpg" alt="Bleu de Chanel" class="perfume-img">
             </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
+            <div class="cell-info">
+                <div class="perfume-name-container">
                     <span class="perfume-name">Bleu de Chanel EDP</span>
-                    <a href="https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9050.html" target="_blank" rel="noopener" class="fragrantica-badge">
+                    <a href="https://www.fragrantica.com/perfume/Chanel/Bleu-de-Chanel-9050.html" target="_blank" class="fragrantica-badge">
                         Parfümü İncele ↗
                     </a>
                 </div>
             </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">3.500 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">5.000 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://www.sevil.com.tr/media/catalog/product/cache/6b8245bae7647528e2edd9cb5e275de1/3/6/3616302020652.jpg" alt="Burberry - Goddess" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Burberry - Goddess</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Burberry/Goddess-83483.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
+            <div class="cell-prices-group">
+                <div class="cell-price">
+                    <span class="price-label">50 ML</span>
+                    <span class="price-value">3.500 TL</span>
                 </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.akakce.com/carolina-herrera/carolina-herrera-good-girl-legere-edp-80-ml-kadin-z.jpg" alt="Carolina Herrera - Good Girl" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Carolina Herrera - Good Girl</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Carolina-Herrera/Good-Girl-39681.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
+                <div class="cell-price">
+                    <span class="price-label">100 ML</span>
+                    <span class="price-value">5.000 TL</span>
                 </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://www.sevil.com.tr/media/catalog/product/cache/6b8245bae7647528e2edd9cb5e275de1/m/m/mm-200521210-43958_1.jpg" alt="Chloe - Lumineuse" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Chloe - Lumineuse</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Chloe/Chloe-L-Eau-de-Parfum-Lumineuse-83915.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
             </div>
         </div>
 
         <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.cimri.io/image/1000x1000/clive-christian-jump-up-kiss-me-hedonistic-masculine-50-ml-edp-erkek-parfum_927292128.jpg" alt="Clive Christian - Jump Up And Kiss Me Hedonistic" class="perfume-img">
+            <div class="cell-img">
+                <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.46066.2x.avif" alt="Baccarat Rouge 540" class="perfume-img">
             </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Clive Christian - Jump Up And Kiss Me Hedonistic</span>
-                    <a href="https://www.fragrantica.com/perfume/Clive-Christian/Jump-Up-And-Kiss-Me-Hedonistic-2021-70767.html" target="_blank" rel="noopener" class="fragrantica-badge">
+            <div class="cell-info">
+                <div class="perfume-name-container">
+                    <span class="perfume-name">Baccarat Rouge 540 Extrait</span>
+                    <a href="https://www.fragrantica.tr/perfumes/Maison-Francis-Kurkdjian/Baccarat-Rouge-540-Extrait-de-Parfum-46066.html" target="_blank" class="fragrantica-badge">
                         Parfümü İncele ↗
                     </a>
                 </div>
             </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.800 TL</span>
+            <div class="cell-prices-group">
+                <div class="cell-price">
+                    <span class="price-label">50 ML</span>
+                    <span class="price-value">1.000 TL</span>
+                </div>
+                <div class="cell-price">
+                    <span class="price-label">100 ML</span>
+                    <span class="price-value">2.000 TL</span>
+                </div>
             </div>
         </div>
 
         <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
+            <div class="cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/504/creed-aventus_min.jpg?revision=1778581528" alt="Creed Aventus" class="perfume-img">
             </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
+            <div class="cell-info">
+                <div class="perfume-name-container">
                     <span class="perfume-name">Creed Aventus for Her</span>
-                    <a href="https://www.fragrantica.com/perfume/Creed/Aventus-for-Her-38473.html" target="_blank" rel="noopener" class="fragrantica-badge">
+                    <a href="https://www.fragrantica.com/perfume/Creed/Aventus-for-Her-38473.html" target="_blank" class="fragrantica-badge">
                         Parfümü İncele ↗
                     </a>
                 </div>
             </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">7.500 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">11.000 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/oic2ypkz.b3d_IMG_01_3700135003897.jpg" alt="Frederic Malle - Portrait Of a Lady" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Frederic Malle - Portrait Of a Lady</span>
-                    <a href="https://www.fragrantica.com/perfume/Frederic-Malle/Portrait-of-a-Lady-10464.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
+            <div class="cell-prices-group">
+                <div class="cell-price">
+                    <span class="price-label">50 ML</span>
+                    <span class="price-value">7.500 TL</span>
                 </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.100 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.100 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/768/giardini-di-toscana-bianco-latte.jpg?revision=1775644059" alt="Giardini Di Toscana - Bianco Latte" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Giardini Di Toscana - Bianco Latte</span>
-                    <a href="https://www.fragrantica.com/perfume/Giardini-Di-Toscana/Bianco-Latte-64757.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
+                <div class="cell-price">
+                    <span class="price-label">100 ML</span>
+                    <span class="price-value">11.000 TL</span>
                 </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/H/HERMS/145016/59154-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Hermes - Elixir De Merveilles" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Hermes - Elixir De Merveilles</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Hermes/Elixir-des-Merveilles-3168.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">850 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.600 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/J/JEAN_PAUL_GAULTIER/703134/329657-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Jean Paul Gaultier - Divine" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Jean Paul Gaultier - Divine</span>
-                    <a href="https://www.fragrantica.com/perfume/Jean-Paul-Gaultier/Gaultier-Divine-83889.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.akakce.com/lancome/lancome-hypnose-senses-edp-75-ml-kadin-z.jpg" alt="Lancome - Hypnose Senses" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Lancome Hypnose Senses</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Lancome/Hypnose-Senses-6205.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.200 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.250 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/267/les-liquides-imaginaires-blanche-bete.jpg?revision=1771482903" alt="Les Liquides Imaginaires - Blanche Bete" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Les Liquides Imaginaires - Blanche Bete</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Les-Liquides-Imaginaires/Blanche-Bete-70189.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.900 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume/o.104087.jpg" alt="Louis Vuitton - Elves" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Louis Vuitton - Elves</span>
-                    <a href="https://www.fragrantica.com/perfume/Louis-Vuitton/eLVes-104087.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">3.300 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/03uo44sh.s2f_IMG_01_3700559614242.jpg" alt="Maison Francis Kurkdijan - Grand Soir" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Maison Francis Kurkdijan - Grand Soir</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Maison-Francis-Kurkdjian/Grand-Soir-40816.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/in10bqff.410_IMG_01_3700458604061.jpg" alt="Memo - Madurai" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Memo - Madurai</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Memo-Paris/Madurai-75181.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.900 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://witcdn.kaganparfumeri.com/paco-rabanne-million-gold-for-her-kadin-parfum-edp-90-ml-refillable-edp-parfum-paco-rabanne-78458-28-O.jpg" alt="Paco Rabanne - Million Gold" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Paco Rabanne - Million Gold</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Rabanne/Million-Gold-For-Her-95640.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/V/VERSACE/528281/222479-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Versace - Eros" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Versace - Eros</span>
-                    <a href="https://www.fragrantica.com/perfume/Versace/Eros-Eau-de-Parfum-62762.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://static.ticimax.cloud/38850/uploads/urunresimleri/buyuk/bare-vanilla-vucut-spreyi-11b-2a.jpg" alt="Victoria's Secret - Bare Vanilla" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Victoria's Secret - Bare Vanilla</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Victoria-s-Secret/Bare-Vanilla-56836.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/Y/YVES_SAINT_LAURENT/483045/121030-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="YSL - Libre" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">YSL - Libre</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Yves-Saint-Laurent/Libre-56077.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/s412dmak.sud_IMG_01_8054320902539.jpg" alt="Xerjoff - Erba Gold" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Xerjoff - Erba Gold</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Xerjoff/Erba-Gold-76683.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.900 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/C/CHANEL/143434/356627-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Chanel - Chance" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Chanel - Chance</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Chanel/Chance-Eau-de-Parfum-31351.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/P/PRADA/696542/325791-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Prada - Paradoxe Intense" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Prada - Paradoxe Intense</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Prada/Prada-Paradoxe-Intense-83988.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.68578.jpg" alt="Gucci - Flora Geourgeous Gardenia" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Gucci - Flora Geourgeous Gardenia</span>
-                    <a href="https://www.fragrantica.com/perfume/Gucci/Flora-Gorgeous-Gardenia-68578.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/D/DIOR/71393/54287-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Dior - J'adore" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Dior - J'adore</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Dior/J-adore-210.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/B/BURBERRY/620045/280253-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Burberry - Her Elixir" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Burberry - Her Elixir</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Burberry/Burberry-Her-Elixir-de-Parfum-75968.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/38850/uploads/urunresimleri/buyuk/bombshell-eau-de-parfum-a19d-3.jpg" alt="Victoria's Secret - Bombshell" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Victoria's Secret - Bombshell</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Victoria-s-Secret/Bombshell-10190.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/J/JEAN_PAUL_GAULTIER/722252/343682-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Jean Paul Gaultier - La Belle Paradise Garden" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Jean Paul Gaultier - La Belle Paradise Garden</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Jean-Paul-Gaultier/La-Belle-Paradise-Garden-88873.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">850 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume/o.18369.jpg" alt="YSL - Supreme Bouquet" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">YSL - Supreme Bouquet</span>
-                    <a href="https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://tr.dior.com/cdn/shop/products/Y0083424_F008344409_E01_GHC_1200x1200.jpg?v=1597936067" alt="Dior - Hypnotic Poison" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Dior - Hypnotic Poison</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Dior/Hypnotic-Poison-219.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-         <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/udwrvja2.skb_IMG_01_3770019756362.jpg" alt="Maison Crivelli - Oud Maracuja" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Maison Crivelli - Oud Maracuja</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Maison-Crivelli/Oud-Maracuja-83842.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1500 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.800 TL</span>
-            </div>
-        </div>
-         <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVz56FgWTo7wylTB4KQZbibaorPlxcrURn1Q&s" alt="Armani - Si" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Armani - Si</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Giorgio-Armani/Si-18453.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">850 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.600 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.dsmcdn.com/ty1805/prod/QC_PREP/20251223/11/b9d12702-fc66-3baf-bd01-0d62603d270c/1_org_zoom.jpg" alt="Amouage - Outlands" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Amouage - Outlands</span>
-                    <a href="https://www.fragrantica.com/perfume/Amouage/Outlands-97924.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.250 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">2.400 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.dsmcdn.com/mnresize/420/620/ty1790/prod/QC_ENRICHMENT/20251114/18/e4e6e367-96ea-31e5-bfd7-ba91b6759dd1/1_org_zoom.jpg" alt="Kenzo - Homme Marine" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Kenzo - Homme Marine</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Kenzo/Kenzo-Homme-Marine-80042.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-         <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/tlql3vfv.5an_IMG_01_3701415902008.jpg" alt="Intio - Nartotic Delight" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Intio - Narcotic Delight</span>
-                    <a href="https://www.fragrantica.com/perfume/Initio-Parfums-Prives/Narcotic-Delight-89368.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/0709001254_IMG_01_2110059315531.jpg" alt="Xerjoff - Lira" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Xerjoff - Lira</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Casamorati-1888/Lira-11801.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://media.sephora.eu/content/dam/digital/pim/published/S/SOL_DE_JANEIRO/439867/38651-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Brazilian Crush - Sol De Janeiro 62" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Brazilian Crush - Sol De Janeiro 62</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Sol-de-Janeiro/Cheirosa-62-56062.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-         <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/0709001254_IMG_01_2110059315531.jpg" alt="Lancome - La Vie Est Belle" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Lancome - La Vie Est Belle</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Lancome/La-Vie-Est-Belle-14982.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/0709001254_IMG_01_8033488155070.jpg" alt="Xerjoff - Naxos" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Xerjoff - Naxos</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Xerjoff/XJ-1861-Naxos-30529.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.800 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/0709001254_IMG_01_3700578506009.jpg" alt="Parfums De Marly - Pegasus" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Parfums De Marley - Pegasus</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Parfums-de-Marly/Pegasus-16938.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/002/parfums-de-marly-delina-exclusif.png?revision=1771224391" alt="Parfums De Marly - Delina Exclusif" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Parfums De Marly - Delina Exclusif</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Parfums-de-Marly/Delina-Exclusif-50370.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.800 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5pz-X7d71KFvAo3uCARGApc06EacLnVOA1w&s" alt="Jean Paul Gaultier - Ultra Male" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Jean Paul Gaultier - Ultra Male</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Jean-Paul-Gaultier/Ultra-Male-30947.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
-            </div>
-        </div>
-         <div class="perfume-item" data-gender="erkek">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.69652.jpg" alt="Lorenzo Pazzaglia - Black Sea" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Lorenzo Pazzaglia - Black Sea</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Lorenzo-Pazzaglia/Black-Sea-69652.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.900 TL</span>
-            </div>
-        </div>
- <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/ejc5dmjl.2y5_IMG_01_888066114325.jpg" alt="Tom Ford - Bitter Peach" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Tom Ford - Bitter Peach</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Tom-Ford/Bitter-Peach-62707.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.900 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.48286.jpg" alt="Memo - Tamarindo" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Memo - Tamarindo</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Memo-Paris/Tamarindo-48286.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/ikyqaiax.sxl_IMG_01_3700458612332.jpg" alt="Memo - Marfa" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Memo - Marfa</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Memo-Paris/Marfa-37185.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">900 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.700 TL</span>
-            </div>
-        </div>
-         <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/gvpbleqo.t5t_IMG_01_3700458605327.jpg" alt="Memo - Palais Bourbon" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Memo - Palais Bourbon</span>
-                    <a href="https://www.fragrantica.tr/perfumes/Memo-Paris/Palais-Bourbon-94839.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">1.000 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.800 TL</span>
-            </div>
-        </div>
-        <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://akn-atelier.a-cdn.akinoncloud.com/products/2023/11/03/272/9052fdd1-41bc-4be1-8f95-4c5d0bfcce1d.jpg" alt="Atelier Rebul - İstanbul" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Atelier Rebul - İstanbul</span>
-                    <a href="https://www.fragrantica.com/perfume/Atelier-Rebul/Istanbul-50903.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-                <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/productimages/qmy1o3k4.32r_IMG_02_3760035451662.jpg" alt="BDK - Impadia" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">BDK - Impadia</span>
-                    <a href="https://www.fragrantica.tr/perfumes/BDK-Parfums/Impadia-104764.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-               <div class="perfume-item" data-gender="unisex">
-            <div class="cell cell-img">
-                <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/639/kilian-blue-moon.jpg?revision=1751366530" alt="Killian - Blue Moon Ginger Dash" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Killian - Blue Moon Ginger Dash</span>
-                    <a href="https://www.fragrantica.com/perfume/By-Kilian/Blue-Moon-Ginger-Dash-79731.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">800 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.500 TL</span>
-            </div>
-        </div>
-           <div class="perfume-item" data-gender="kadin">
-            <div class="cell cell-img">
-                <img src="https://www.cosmoland.com.tr/uploads/urunler/victoria-s-secret-tease-creme-cloud-edp-100-ml-38922.webp" alt="Victoria's Secret - Tease Creme Cloud" class="perfume-img">
-            </div>
-            <div class="cell cell-info">
-                <div class="perfume-name-wrapper">
-                    <span class="perfume-name">Victoria's Secret - Tease Creme Cloud</span>
-                    <a href="https://www.fragrantica.com/perfume/Victoria-s-Secret/Tease-Creme-Cloud-68550.html" target="_blank" rel="noopener" class="fragrantica-badge">
-                        Parfümü İncele ↗
-                    </a>
-                </div>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">50 ML</span>
-                <span class="price-value">750 TL</span>
-            </div>
-            <div class="cell cell-price">
-                <span class="price-label">100 ML</span>
-                <span class="price-value">1.400 TL</span>
             </div>
         </div>
 
@@ -1585,31 +520,18 @@
 <script>
     let currentGender = 'all';
 
-    // 🚀 DÖKÜMAN YÜKLENDİĞİNDE OTOMATİK ALFABETİK SIRALAMA MOTORU
-    document.addEventListener("DOMContentLoaded", function() {
-        const list = document.getElementById("perfumeList");
-        const items = Array.from(list.getElementsByClassName("perfume-item"));
-
-        items.sort((a, b) => {
-            const nameA = a.getElementsByClassName("perfume-name")[0].textContent.trim().toUpperCase();
-            const nameB = b.getElementsByClassName("perfume-name")[0].textContent.trim().toUpperCase();
-            // Türkçe karakter uyumlu alfabetik karşılaştırma kalkanı
-            return nameA.localeCompare(nameB, 'tr', { sensitivity: 'base' });
-        });
-
-        // Sıralanmış elemanları listeye yeniden basıyoruz
-        items.forEach(item => list.appendChild(item));
-    });
-
+    // 🌗 Güncellenen Dinamik Tema Geçiş Fonksiyonu
     function toggleTheme() {
         const body = document.body;
         const btn = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+        
         body.classList.toggle('dark-mode');
         
         if(body.classList.contains('dark-mode')) {
-            btn.innerHTML = '🌙 <span id="themeText">Açık Mod</span>';
+            btn.innerHTML = '<span>🌙</span> <span id="themeText">Açık Mod</span>';
         } else {
-            btn.innerHTML = '☀️ <span id="themeText">Koyu Mod</span>';
+            btn.innerHTML = '<span>☀️</span> <span id="themeText">Koyu Mod</span>';
         }
     }
 
@@ -1621,28 +543,7 @@
         applyFilters();
     }
 
-    // Gelişmiş Arama Filtresi (X butonunu tetikler)
-    function filterPerfumes() { 
-        const searchInput = document.getElementById('searchInput');
-        const clearBtn = document.getElementById('searchClear');
-        
-        if (searchInput.value.length > 0) {
-            clearBtn.style.display = 'block';
-        } else {
-            clearBtn.style.display = 'none';
-        }
-        applyFilters(); 
-    }
-
-    // Arama Temizleme Fonksiyonu
-    function clearSearch() {
-        const searchInput = document.getElementById('searchInput');
-        const clearBtn = document.getElementById('searchClear');
-        searchInput.value = '';
-        clearBtn.style.display = 'none';
-        applyFilters();
-        searchInput.focus();
-    }
+    function filterPerfumes() { applyFilters(); }
 
     function applyFilters() {
         const searchInput = document.getElementById('searchInput');
@@ -1652,21 +553,14 @@
 
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
-            let itemGender = item.getAttribute('data-gender').toLowerCase();
-            
-            if (itemGender === 'kadın') itemGender = 'kadin';
-            
+            const itemGender = item.getAttribute('data-gender');
             const nameSpan = item.getElementsByClassName('perfume-name')[0];
             const textValue = nameSpan ? (nameSpan.textContent || nameSpan.innerText).toUpperCase() : '';
 
             const genderMatch = (currentGender === 'all' || itemGender === currentGender);
             const textMatch = (textValue.indexOf(filterText) > -1);
 
-            if (genderMatch && textMatch) {
-                item.style.setProperty('display', '', 'important'); 
-            } else {
-                item.style.setProperty('display', 'none', 'important');
-            }
+            item.style.display = (genderMatch && textMatch) ? "flex" : "none";
         }
     }
 </script>
