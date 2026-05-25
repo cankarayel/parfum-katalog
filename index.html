@@ -268,7 +268,7 @@
         .perfume-item:hover .perfume-name { color: #112d72; }
         body.dark-mode .perfume-item:hover .perfume-name { color: #3b82f6; }
 
-        /* 🟢 💬 MİNMALİST SABİT WHATSAPP BUTON STİLİ */
+        /* 🟢 💬 SABİT WHATSAPP BUTON STİLİ */
         .whatsapp-sticky-btn {
             position: fixed;
             bottom: 30px;
@@ -295,7 +295,7 @@
             color: #ffffff;
         }
 
-        /* 📱 %100 MOBİL SİMETRİ VE STABİLİTE AYARLARI */
+        /* 📱 %100 MOBİL SİMETRİ VE ESNEK İSİM DÜZENİ */
         @media (max-width: 600px) {
             body { padding: 15px 10px; }
             .container { padding: 20px 15px; border-radius: 12px; }
@@ -320,7 +320,7 @@
                 justify-content: space-between;
                 padding: 12px 0;
                 border-bottom: 1px solid #f0f0f0;
-                gap: 10px;
+                gap: 12px;
             }
             body.dark-mode .perfume-item { border-bottom-color: #1e1e24; }
 
@@ -328,36 +328,40 @@
             .cell-img { width: auto; flex-shrink: 0; }
             .perfume-img { width: 46px; height: 46px; }
 
+            /* 🌟 Mobilde İsmin Kırılıp Tamamının Görünmesini Sağlayan Esnek Alan */
             .cell-info {
                 flex-grow: 1;
                 min-width: 0;
-                padding-left: 4px;
+                padding-left: 2px;
             }
             .perfume-name-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 3px;
+                gap: 4px;
             }
             .perfume-name {
                 font-size: 13px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 140px;
+                font-weight: 600;
+                white-space: normal; /* İsmin alt satıra geçmesine izin veriyoruz */
+                word-wrap: break-word;
+                overflow: visible;
+                text-overflow: clip;
+                max-width: 100%;
+                line-height: 1.3;
             }
-            .fragrantica-badge { font-size: 10px; padding: 1px 6px; }
+            .fragrantica-badge { font-size: 10px; padding: 1px 6px; margin-left: 0; }
 
+            /* Sağ Köşedeki Fiyat Sütunları Güvencesi */
             .cell-price {
                 width: auto;
                 flex-shrink: 0;
                 display: inline-block;
-                margin-left: 4px;
+                margin-left: 6px;
                 text-align: right;
             }
             .price-value { font-size: 12px; }
             .price-label { font-size: 9px; }
 
-            /* Mobilde butonun biraz daha kibar durması için */
             .whatsapp-sticky-btn {
                 bottom: 20px;
                 right: 20px;
@@ -463,7 +467,8 @@
                 <span class="price-value">11.000 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.akakce.com/carolina-herrera/carolina-herrera-good-girl-legere-edp-80-ml-kadin-z.jpg" alt="Carolina Herrera - Good Girl" class="perfume-img">
             </div>
@@ -484,6 +489,7 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
+
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/s412dmak.sud_IMG_01_8054320902539.jpg" alt="Xerjoff - Erba Gold" class="perfume-img">
@@ -505,7 +511,8 @@
                 <span class="price-value">1900 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/768/giardini-di-toscana-bianco-latte.jpg?revision=1775644059" alt="Giardini Di Toscana - Bianco Latte" class="perfume-img">
             </div>
@@ -526,7 +533,8 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/J/JEAN_PAUL_GAULTIER/703134/329657-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Jean Paul Gaultier - Divine" class="perfume-img">
             </div>
@@ -547,7 +555,8 @@
                 <span class="price-value">1500 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://fimgs.net/mdimg/perfume/o.104087.jpg" alt="Louis Vuitton - Elves" class="perfume-img">
             </div>
@@ -568,7 +577,8 @@
                 <span class="price-value">3300 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.cimri.io/image/1000x1000/clive-christian-jump-up-kiss-me-hedonistic-masculine-50-ml-edp-erkek-parfum_927292128.jpg" alt="Clive Christian - Jump Up And Kiss Me Hedonistic" class="perfume-img">
             </div>
@@ -589,7 +599,8 @@
                 <span class="price-value">2800 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://static.ticimax.cloud/38850/uploads/urunresimleri/buyuk/bare-vanilla-vucut-spreyi-11b-2a.jpg" alt="Victoria's Secret - Bare Vanilla" class="perfume-img">
             </div>
@@ -610,7 +621,8 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/ps4owecf.kms_IMG_01_701666410980.jpg" alt="Amouage - Guidance 46" class="perfume-img">
             </div>
@@ -631,6 +643,7 @@
                 <span class="price-value">2400 TL</span>
             </div>
         </div>
+
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/267/les-liquides-imaginaires-blanche-bete.jpg?revision=1771482903" alt="Les Liquides Imaginaires - Blanche Bete" class="perfume-img">
@@ -652,7 +665,8 @@
                 <span class="price-value">1900 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/in10bqff.410_IMG_01_3700458604061.jpg" alt="Memo - Madurai" class="perfume-img">
             </div>
@@ -673,7 +687,8 @@
                 <span class="price-value">1900 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/d2jsgctu.ax2_IMG_01_3508440251848.jpg" alt="Creed - Queen Of Silk" class="perfume-img">
             </div>
@@ -694,7 +709,8 @@
                 <span class="price-value">2400 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://witcdn.kaganparfumeri.com/paco-rabanne-million-gold-for-her-kadin-parfum-edp-90-ml-refillable-edp-parfum-paco-rabanne-78458-28-O.jpg" alt="Paco Rabanne - Million Gold" class="perfume-img">
             </div>
@@ -715,7 +731,8 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://bluemercury.com/cdn/shop/files/variant_images-size-17oz-8028713470011-1.jpg?v=1775751073&width=1500" alt="Acqua di Parma - Magnolia Nobile" class="perfume-img">
             </div>
@@ -736,6 +753,7 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
+
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.cimri.io/image/320x320/emporio-armani-stronger-with-you-100-ml-edt-erkek-parfum_814274915.jpg" alt="Armani - Stronger With You" class="perfume-img">
@@ -743,7 +761,7 @@
             <div class="cell cell-info">
                 <div class="perfume-name-wrapper">
                     <span class="perfume-name">Armani - Stronger With You</span>
-                    <a href="https://www.fragrantica.com/perfume/Giorgio-Armani/Emporio-Armani-Stronger-With-You-45258.html" target="_blank" class="fragrantica-badge">
+                    <a href="https://www.giorgioarmanibeauty-usa.com" target="_blank" class="fragrantica-badge">
                         Parfümü İncele ↗
                     </a>
                 </div>
@@ -757,7 +775,8 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
-        <div class="perfume-item" data-gender="kadın">
+
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://www.sevil.com.tr/media/catalog/product/cache/6b8245bae7647528e2edd9cb5e275de1/3/6/3616302020652.jpg" alt="Burberry - Goddess" class="perfume-img">
             </div>
@@ -778,7 +797,6 @@
                 <span class="price-value">1400 TL</span>
             </div>
         </div>
-
 
     </div>
 </div>
@@ -808,6 +826,7 @@
 
     function filterPerfumes() { applyFilters(); }
 
+    // Kadın kelimesindeki Türkçe karakter uyumsuzluğunu çözen esnek filtreleme sistemi
     function applyFilters() {
         const searchInput = document.getElementById('searchInput');
         const filterText = searchInput.value.toUpperCase();
@@ -816,7 +835,11 @@
 
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
-            const itemGender = item.getAttribute('data-gender');
+            let itemGender = item.getAttribute('data-gender').toLowerCase();
+            
+            // "kadın" ve "kadin" kelimelerini normalize ediyoruz
+            if (itemGender === 'kadın') itemGender = 'kadin';
+            
             const nameSpan = item.getElementsByClassName('perfume-name')[0];
             const textValue = nameSpan ? (nameSpan.textContent || nameSpan.innerText).toUpperCase() : '';
 
