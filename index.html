@@ -2095,4 +2095,191 @@
                 <span class="price-value">800 TL</span>
             </div>
             <div class="cell cell-price">
-                <span class="price-label">100 ML
+                <span class="price-label">100 ML</span>
+                <span class="price-value">1.500 TL</span>
+            </div>
+        </div>
+
+        <div class="perfume-item" data-gender="kadin">
+            <div class="cell cell-img">
+                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/4izwnf4k.n3o_IMG_01_3614274151701.jpg" alt="YSL - Libre Flowers & Flames" class="perfume-img">
+            </div>
+            <div class="cell cell-info">
+                <div class="perfume-name-wrapper">
+                    <span class="perfume-name">YSL - Libre Flowers & Flames</span>
+                    <a href="https://www.fragrantica.tr/perfumes/Yves-Saint-Laurent/Libre-Flowers-Flames-95623.html" target="_blank" rel="noopener" class="fragrantica-badge">
+                        Parfümü İncele ↗
+                    </a>
+                </div>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">800 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">1.500 TL</span>
+            </div>
+        </div>
+
+        <div class="perfume-item" data-gender="kadin">
+            <div class="cell cell-img">
+                <img src="https://fimgs.net/mdimg/perfume/o.18369.jpg" alt="YSL - Supreme Bouquet" class="perfume-img">
+            </div>
+            <div class="cell cell-info">
+                <div class="perfume-name-wrapper">
+                    <span class="perfume-name">YSL - Supreme Bouquet</span>
+                    <a href="https://www.fragrantica.com/perfume/Yves-Saint-Laurent/Supreme-Bouquet-18369.html" target="_blank" rel="noopener" class="fragrantica-badge">
+                        Parfümü İncele ↗
+                    </a>
+                </div>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">800 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">1.500 TL</span>
+            </div>
+        </div>
+
+        <div class="perfume-item" data-gender="erkek">
+            <div class="cell cell-img">
+                <img src="https://www.sevil.com.tr/media/catalog/product/cache/2a6b0744b87cbe1990f7a65c1fd3659e/3/6/3614273852814-2.jpg" alt="YSL - Myslf" class="perfume-img">
+            </div>
+            <div class="cell cell-info">
+                <div class="perfume-name-wrapper">
+                    <span class="perfume-name">YSL - Myslf</span>
+                    <a href="https://www.fragrantica.tr/perfumes/Yves-Saint-Laurent/MYSLF-Eau-de-Parfum-84094.html" target="_blank" rel="noopener" class="fragrantica-badge">
+                        Parfümü İncele ↗
+                    </a>
+                </div>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">750 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">1.400 TL</span>
+            </div>
+        </div>
+
+        <div class="perfume-item" data-gender="kadin">
+            <div class="cell cell-img">
+                <img src="https://www.sevil.com.tr/media/catalog/product/cache/2a6b0744b87cbe1990f7a65c1fd3659e/3/4/3423474891856_01.jpeg" alt="Zadig & Voltaire - This Is Her" class="perfume-img">
+            </div>
+            <div class="cell cell-info">
+                <div class="perfume-name-wrapper">
+                    <span class="perfume-name">Zadig & Voltaire - This Is Her</span>
+                    <a href="https://www.fragrantica.tr/perfumes/Zadig-Voltaire/This-is-Her-39358.html" target="_blank" rel="noopener" class="fragrantica-badge">
+                        Parfümü İncele ↗
+                    </a>
+                </div>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">50 ML</span>
+                <span class="price-value">750 TL</span>
+            </div>
+            <div class="cell cell-price">
+                <span class="price-label">100 ML</span>
+                <span class="price-value">1.400 TL</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let currentGender = 'all';
+
+    // 🚀 DÖKÜMAN YÜKLENDİĞİNDE OTOMATİK ALFABETİK SIRALAMA MOTORU
+    document.addEventListener("DOMContentLoaded", function() {
+        const list = document.getElementById("perfumeList");
+        const items = Array.from(list.getElementsByClassName("perfume-item"));
+
+        items.sort((a, b) => {
+            const nameA = a.getElementsByClassName("perfume-name")[0].textContent.trim().toUpperCase();
+            const nameB = b.getElementsByClassName("perfume-name")[0].textContent.trim().toUpperCase();
+            // Türkçe karakter uyumlu alfabetik karşılaştırma kalkanı
+            return nameA.localeCompare(nameB, 'tr', { sensitivity: 'base' });
+        });
+
+        // Sıralanmış elemanları listeye yeniden basıyoruz
+        items.forEach(item => list.appendChild(item));
+    });
+
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('themeToggle');
+        body.classList.toggle('dark-mode');
+        
+        if(body.classList.contains('dark-mode')) {
+            btn.innerHTML = '🌙 <span id="themeText">Açık Mod</span>';
+        } else {
+            btn.innerHTML = '☀️ <span id="themeText">Koyu Mod</span>';
+        }
+    }
+
+    function filterGender(gender, button) {
+        currentGender = gender;
+        const buttons = document.getElementsByClassName('filter-btn');
+        for (let btn of buttons) { btn.classList.remove('active'); }
+        button.classList.add('active');
+        applyFilters();
+    }
+
+    // Gelişmiş Arama Filtresi (X butonunu tetikler)
+    function filterPerfumes() { 
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('searchClear');
+        
+        if (searchInput.value.length > 0) {
+            clearBtn.style.display = 'block';
+        } else {
+            clearBtn.style.display = 'none';
+        }
+        applyFilters(); 
+    }
+
+    // Arama Temizleme Fonksiyonu
+    function clearSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('searchClear');
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        applyFilters();
+        searchInput.focus();
+    }
+
+    function applyFilters() {
+        const searchInput = document.getElementById('searchInput');
+        const filterText = searchInput.value.toUpperCase();
+        const list = document.getElementById('perfumeList');
+        const items = list.getElementsByClassName('perfume-item');
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            let itemGender = item.getAttribute('data-gender').toLowerCase();
+            
+            if (itemGender === 'kadın') itemGender = 'kadin';
+            
+            const nameSpan = item.getElementsByClassName('perfume-name')[0];
+            const textValue = nameSpan ? (nameSpan.textContent || nameSpan.innerText).toUpperCase() : '';
+
+            const genderMatch = (currentGender === 'all' || itemGender === currentGender);
+            const textMatch = (textValue.indexOf(filterText) > -1);
+
+            if (genderMatch && textMatch) {
+                item.style.setProperty('display', '', 'important'); 
+            } else {
+                item.style.setProperty('important', 'none', 'important');
+                item.style.setProperty('display', 'none', 'important');
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
