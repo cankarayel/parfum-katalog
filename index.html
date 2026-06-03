@@ -397,7 +397,46 @@
     </style>
 </head>
 <body>
+<!-- WhatsApp Üstü Bilgi Balonu -->
+<div class="whatsapp-tip-box">
+    Listede olmayan bir parfüm talebiniz var ise WhatsApp üzerinden iletişime geçebilirsiniz.
+</div>
 
+<style>
+.whatsapp-tip-box {
+    position: fixed;
+    bottom: 85px; /* WhatsApp butonunun hemen üzerinde durması için */
+    right: 30px;
+    background-color: #ffffff;
+    color: #4b5563;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    max-width: 220px;
+    z-index: 9999;
+    line-height: 1.4;
+}
+/* Karanlık mod uyumu */
+body.dark-mode .whatsapp-tip-box {
+    background-color: #1e1e24;
+    border-color: #2a2a32;
+    color: #d1d5db;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+/* Mobil cihazlarda buton küçüldüğü için yerleşimi simetriye alıyoruz */
+@media (max-width: 600px) {
+    .whatsapp-tip-box {
+        bottom: 70px;
+        right: 20px;
+        max-width: 180px;
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+</style>
 <a <!-- 1. Font Awesome Kütüphanesi (WhatsApp logosunun yüklenmesi için en üste ekleyin) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
