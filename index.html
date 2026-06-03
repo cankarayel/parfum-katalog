@@ -220,21 +220,21 @@
         .cell-info { padding-left: 12px; }
         .cell-price { width: 110px; text-align: right; }
 
-        /* 🖼️ Akıllı Vitrin Görsel Düzeni (Uzun Şişeleri Korumalı Sığdırma) */
+        /* 🖼️ Akıllı Vitrin Görsel Düzeni */
         .perfume-img {
             width: 52px;
             height: 52px;
-            object-fit: contain; /* Şişenin boyu kesilmez, orijinal şeklini korur */
+            object-fit: contain;
             border-radius: 8px;
-            background-color: #ffffff; /* Temiz ve net görünüm için beyaz taban */
+            background-color: #ffffff;
             border: 1px solid #eaeaea;
-            padding: 4px; /* Şişe kenarlarının çerçeveye yapışmasını önleyen kalkan */
+            padding: 4px;
             display: block;
             margin: 0 auto;
         }
 
         body.dark-mode .perfume-img {
-            background-color: #ffffff; /* Karanlık modda da parfümler patlasın diye beyaz kalması harika bir kontrast oluşturuyor */
+            background-color: #ffffff;
             border-color: #2a2a32;
         }
 
@@ -295,7 +295,57 @@
         .perfume-item:hover .perfume-name { color: #112d72; }
         body.dark-mode .perfume-item:hover .perfume-name { color: #3b82f6; }
 
-        /* 🟢 💬 SABİT WHATSAPP BUTON STİLİ */
+        /* 🔍 Aradığınız Parfüm Bulunamadı Kutusu Stilleri */
+        .no-result-box {
+            text-align: center;
+            padding: 35px 20px;
+            background-color: #f9fafb;
+            border: 1px dashed #e5e7eb;
+            border-radius: 12px;
+            margin: 20px 0 10px 0;
+        }
+        .no-result-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .no-result-box h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+        .no-result-box p {
+            font-size: 13px;
+            color: #4b5563;
+            max-width: 440px;
+            margin: 0 auto 18px auto;
+            line-height: 1.5;
+        }
+        .no-result-whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #25d366;
+            color: #ffffff;
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.15);
+        }
+        .no-result-whatsapp-btn:hover {
+            background-color: #20ba5a;
+            color: #ffffff;
+        }
+        body.dark-mode .no-result-box {
+            background-color: #141417;
+            border-color: #2a2a32;
+        }
+        body.dark-mode .no-result-box h3 { color: #f3f4f6; }
+        body.dark-mode .no-result-box p { color: #9ca3af; }
+
+        /* 🟢 Sabit WhatsApp Buton Stili */
         .whatsapp-sticky-btn {
             position: fixed;
             bottom: 30px;
@@ -322,7 +372,7 @@
             color: #ffffff;
         }
 
-        /* 📱 %100 MOBİL SİMETRİ VE ESNEK İSİM DÜZENİ */
+        /* 📱 Mobil Uyumluluk Ayarları */
         @media (max-width: 600px) {
             body { padding: 15px 10px; }
             .container { padding: 20px 15px; border-radius: 12px; }
@@ -339,6 +389,13 @@
             .filter-btn { padding: 8px 12px; font-size: 12px; border-radius: 8px; }
             .search-container { margin-bottom: 20px; }
             .search-box { padding: 12px 14px; font-size: 14px; }
+            
+            /* Mobilde arama çarpı butonunun dikey olarak tam ortalanması */
+            .search-clear-btn {
+                top: 50%;
+                transform: translateY(-50%);
+                right: 14px;
+            }
 
             .perfume-list { display: flex; flex-direction: column; }
             .perfume-item {
@@ -397,29 +454,12 @@
     </style>
 </head>
 <body>
-<!-- 1. Font Awesome Kütüphanesi (WhatsApp logosunun yüklenmesi için en üste ekleyin) -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- 2. Yeni Logolu WhatsApp Butonunuz -->
 <a href="https://wa.me/905392252513?text=Merhaba,%20parfüm%20kataloğunuzu%20inceledim.%20Detaylı%20bilgi%20alabilir%20miyim?" target="_blank" class="whatsapp-sticky-btn">
     <i class="fab fa-whatsapp" style="font-size: 20px; margin-right: 2px;"></i>
     <span>Sipariş & Bilgi</span>
-</a>
-</a>
-
-<style>
-/* Kırmızı Bildirim Noktası Stili */
-.whatsapp-notification-dot {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 8px;
-    height: 8px;
-    background-color: #ff3b30; /* Canlı bildirim kırmızısı */
-    border-radius: 50%;
-    border: 1px solid #25d366; /* WhatsApp yeşiliyle bütünleşmesi için çerçeve */
-}
-</style>
 </a>
 
 <div class="container">
@@ -443,6 +483,16 @@
     <div class="search-container">
         <input type="text" id="searchInput" class="search-box" placeholder="Parfüm adı ara..." onkeyup="filterPerfumes()">
         <button id="searchClear" class="search-clear-btn" onclick="clearSearch()">×</button>
+    </div>
+
+    <!-- 🔍 Aradığınız Parfüm Bulunamadı Ekranı -->
+    <div id="noResultContainer" class="no-result-box" style="display: none;">
+        <div class="no-result-icon">🔍</div>
+        <h3>Aradığınız Parfüm Bulunamadı</h3>
+        <p>Aradığınız parfüm şu an listemizde görünmüyor olabilir. Ancak geniş tedarik ağımız sayesinde sizin için getirtebiliriz!</p>
+        <a href="https://wa.me/905392252513?text=Merhaba,%20aradi%C4%9F%C4%B1m%20bir%20parf%C3%BCm%C3%BC%20listede%20bulamad%C4%B1m,%20yard%C4%B1mc%C4%B1%20olabilir%20misiniz?" target="_blank" class="no-result-whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp'tan Talep Et
+        </a>
     </div>
 
     <div class="perfume-list" id="perfumeList">
@@ -644,6 +694,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/S/SOL_DE_JANEIRO/439867/38651-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Brazilian Crush - Sol De Janeiro 62" class="perfume-img">
@@ -954,7 +1005,7 @@
 
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
-                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/zfmxpbqd.pb2_IMG_01_3760264097440.jpeg" alt="Ex Nihilo - Blue Talisman" class="perfume-img">
+                <img src="https://cdn.beymen.com/mnresize/505/704/productimages/zfmxpbqd.pb2_IMG_01_3762264097440.jpeg" alt="Ex Nihilo - Blue Talisman" class="perfume-img">
             </div>
             <div class="cell cell-info">
                 <div class="perfume-name-wrapper">
@@ -2183,6 +2234,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/K/KILIAN_PARIS/555098/259043-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Killian - Apple Brandy On The Rocks" class="perfume-img">
@@ -2204,6 +2256,7 @@
                 <span class="price-value">2.000 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/psiyyaud.q3g_IMG_01_8016741072482.jpg" alt="Tiziana Terenzi - Kirke" class="perfume-img">
@@ -2225,6 +2278,7 @@
                 <span class="price-value">2.000 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/V/VERSACE/120496/54488-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Versace - Crystal Noir Parfum" class="perfume-img">
@@ -2246,6 +2300,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/43esnkn5.4xh_IMG_01_811901020802.jpg" alt="Le Labo - Baie 19" class="perfume-img">
@@ -2267,6 +2322,7 @@
                 <span class="price-value">1.900 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7zgU8mdoyaipk0eliMZrFRYQ45v6wX1Vqpw&s" alt="Clive Christian - Blonde Amber" class="perfume-img">
@@ -2288,6 +2344,7 @@
                 <span class="price-value">2.900 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/d2jsgctu.ax2_IMG_01_3508440251848.jpg" alt="Creed - Queen Of Silk" class="perfume-img">
@@ -2309,6 +2366,7 @@
                 <span class="price-value">2.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.95.jpg" alt="YSL - Nu" class="perfume-img">
@@ -2330,6 +2388,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/N/NARCISO_RODRIGUEZ/353627/93345-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Narciso - Poudree" class="perfume-img">
@@ -2351,6 +2410,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://fimgs.net/mdimg/perfume/o.42268.jpg" alt="Maison Francis Kurkdijan - Aqua Celestia" class="perfume-img">
@@ -2372,6 +2432,7 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/205/m-micallef-gntonic.jpg?revision=1751968092" alt="Micallef - Gntonic" class="perfume-img">
@@ -2393,6 +2454,7 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdnaws.com.tr/d2/23uj17/vencosmeticcom/ZW3D2Lqi2qQQvGYHnFzROLPsSdwHVUkzYQ1Dr/urunler/66ec068e176e5-66ec068e2011e.webp" alt="Lorenzo Pazzaglia - Summer Hammer" class="perfume-img">
@@ -2414,6 +2476,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA-nbVfsAamMNfVrr8P5Tk3CZyvfvTBZrxmg&s" alt="Xerjoff - Kind Of Blue" class="perfume-img">
@@ -2435,7 +2498,8 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/02ovqfft.nqw_IMG_01_690251084883.jpg" alt="Jo Malone - Wood Sage & Sea Salt" class="perfume-img">
             </div>
@@ -2456,7 +2520,8 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/K/KILIAN/527715/225679-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Killian - Angel's Share" class="perfume-img">
             </div>
@@ -2477,7 +2542,8 @@
                 <span class="price-value">2.400 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/ug45a2in.zpm_IMG_01_3508441001138.jpg" alt="Creed - Virgin Island Water" class="perfume-img">
             </div>
@@ -2498,7 +2564,8 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL4A0uJXkS02-U4Xk46rMnkl1NZayEXrfVew&s" alt="Stephane Humbert Lucas - God Of Fire" class="perfume-img">
             </div>
@@ -2519,7 +2586,8 @@
                 <span class="price-value">2.250 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/x0zrodvu.sbt_IMG_01_690251122257.jpg" alt="Jo Malone - Myrrh & Tonka" class="perfume-img">
             </div>
@@ -2540,6 +2608,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/262/mancera-amore-caffe-edp.jpg?revision=1754663844" alt="Mancera - Amore Caffe" class="perfume-img">
@@ -2561,6 +2630,7 @@
                 <span class="price-value">1.600 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/mb0tbwdw_MP_c9723c52-1353-40a7-8c10-19692a90b99d_54406027330980466533493182985_389.jpg" alt="Profumum Roma - Acqua e Zucchero" class="perfume-img">
@@ -2582,6 +2652,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/uijt1hyx.okh_IMG_04_3346138900087.jpg" alt="Hermes - Un Jardin Sur Le Nil" class="perfume-img">
@@ -2603,6 +2674,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUXw3EVAY29QqwdoDETezIp8szOgW-o-Ti-w&s" alt="Diptyque - Ofresia" class="perfume-img">
@@ -2624,7 +2696,8 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/vlnqbily.mp4_MP_5af87c0d-fc1d-4939-abec-3dc32a86f210_1_34882136865682259478559060116_521.jpg" alt="Chopard - Oud Malaki" class="perfume-img">
             </div>
@@ -2645,6 +2718,7 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQMxoETxrXE3as-JkPaQ47sn7e2xv_Egm1LA&s" alt="Tom Ford - Black Orchid" class="perfume-img">
@@ -2666,6 +2740,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/dcgap5jt.sjh_IMG_01_8054320903062.jpg" alt="Xerjoff - Torino 21" class="perfume-img">
@@ -2687,6 +2762,7 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/gjs0azwp.bft_IMG_02_3701415901452.jpg" alt="Intio - Rehab" class="perfume-img">
@@ -2708,6 +2784,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNxAB3y7j4nQ6ahPuO0jMFIxGs9iTfbYGbEA&s" alt="Armani - Power Of You" class="perfume-img">
@@ -2729,6 +2806,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/awiwnzug.qcz_IMG_01_690251019113.jpg" alt="Jo Malone - English Pear & Freesia" class="perfume-img">
@@ -2750,7 +2828,8 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="unisex">
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/4zaxjow2.snf_IMG_01_3701415901346.jpg" alt="Intio - Absolute Aphrodisiac" class="perfume-img">
             </div>
@@ -2771,7 +2850,8 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="erkek">
+        
+        <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/0qgphlts.5ls_IMG_01_3700578504364.jpg" alt="Parfums De Marley - Althair" class="perfume-img">
             </div>
@@ -2792,6 +2872,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://statics-mp.boyner.com.tr/mnresize/325/451/Boynerimages/679602298131_2007626099_20250802132057058.jpg?v=1766144208" alt="Pino Silvestre - Original" class="perfume-img">
@@ -2813,6 +2894,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg7o5dUJ2Uhfuv134I7JQ64ggBoRfF8fHing&s" alt="Issey Miyake - L'eau D'issey Pour Homme" class="perfume-img">
@@ -2834,6 +2916,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/J/JEAN_PAUL_GAULTIER/722251/343681-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Jean Paul Gautier - Le Beau Paradise Garden" class="perfume-img">
@@ -2855,6 +2938,7 @@
                 <span class="price-value">1.600 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/0hkutgta.aas_IMG_01_3346131400003.jpg" alt="Hermes - Terre d'Hermes" class="perfume-img">
@@ -2876,6 +2960,7 @@
                 <span class="price-value">1.700 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdnaws.com.tr/d2/23uj17/vencosmeticcom/ZW3D2Lqi2qQQvGYHnFzROLPsSdwHVUkzYQ1Dr/urunler/632af9522d705-3415.webp" alt="Paco Rabanne - Black XS" class="perfume-img">
@@ -2897,6 +2982,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/A/ARMANI/462049/110817-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Armani - Stronger With You Intensely" class="perfume-img">
@@ -2918,6 +3004,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/J/JEAN_PAUL_GAULTIER/688840/321127-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Jean Paul Gaultier - Le Male Elixir" class="perfume-img">
@@ -2939,6 +3026,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/D/DIOR/163889/35688-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Dior - Homme Intense" class="perfume-img">
@@ -2960,6 +3048,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/t3u04h13.iii_MP_bc7f259a-2370-42e6-9240-c4adc43c84a1_1_30309465644155036534564252202_467.jpg" alt="Azzaro - Wanted" class="perfume-img">
@@ -2981,7 +3070,8 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="erkek">
+        
+        <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/massivpimupload/C/CAROLINA_HERRERA/68016/404-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Carolina Herrera - 212 Men" class="perfume-img">
             </div>
@@ -3002,6 +3092,7 @@
                 <span class="price-value">1.400 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/H/HUGO_BOSS/697641/329196-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Hugo Boss - Boss Bottled Elixir" class="perfume-img">
@@ -3023,6 +3114,7 @@
                 <span class="price-value">1.500 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/1qfhjyhq.til_IMG_01_652638007526.jpg" alt="Clive Christian - 1872 For Men" class="perfume-img">
@@ -3044,6 +3136,7 @@
                 <span class="price-value">2.000 TL</span>
             </div>
         </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/v3bbdl5x.zem_IMG_01_652638004334.jpg" alt="Clive Christian - Rock Rose Noble VII" class="perfume-img">
@@ -3065,7 +3158,8 @@
                 <span class="price-value">2.400 TL</span>
             </div>
         </div>
-         <div class="perfume-item" data-gender="erkek">
+        
+        <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm7TZO-kjOxKdSWnZ6xaEyTao9BWwIT8Taig&s" alt="Maison Francis Kurkdijan - Amyris Homme Extrait" class="perfume-img">
             </div>
@@ -3084,8 +3178,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">2.500 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/0709001254_IMG_01_3400192000104.jpg" alt="Mancera - Wild Candy" class="perfume-img">
@@ -3105,9 +3200,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="erkek">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/R/RABANNE_FRAGRANCES/583731/270564-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Paco Rabanne - 1 Million Elixir" class="perfume-img">
             </div>
@@ -3126,8 +3222,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/K/KAYALI/618682/283966-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Kayali - Vanilla 28" class="perfume-img">
@@ -3147,8 +3244,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/C/CHLOE/168692/73971-media_swatch.jpeg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Chloe - Signature" class="perfume-img">
@@ -3168,8 +3266,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/A/ARMANI/588509/273522-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Armani - My Way" class="perfume-img">
@@ -3189,9 +3288,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton--LP0462_PM2_Front%20view.jpg?wid=1200&hei=630" alt="Louis Vuitton - Attrape Reves" class="perfume-img">
             </div>
@@ -3210,8 +3310,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.600 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/C/CAROLINA_HERRERA/657445/311829-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Carolina Herrera - Good Girl Blush" class="perfume-img">
@@ -3231,8 +3332,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/0709001254_IMG_01_3400133000002.jpg" alt="Mancera - Roses Vanilla" class="perfume-img">
@@ -3252,9 +3354,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://static.ticimax.cloud/38850/uploads/urunresimleri/very-sexy-night-eau-de-parfum--4260-.jpg" alt="Victoria's Secret - Very Sexy Night" class="perfume-img">
             </div>
@@ -3273,9 +3376,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/K/KAYALI/659758/312987-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Kayali - Yum Pistachio Gelato 33" class="perfume-img">
             </div>
@@ -3294,8 +3398,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/millld3z.keo_IMG_01_3700458611120.jpg" alt="Memo - Lalibela" class="perfume-img">
@@ -3315,9 +3420,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.700 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://fimgs.net/mdimg/perfume/o.11729.jpg" alt="Victoria's Secret - Pink Sweet & Flirty" class="perfume-img">
             </div>
@@ -3336,8 +3442,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://fimgs.net/mdimg/perfume/o.5079.jpg" alt="Lorenzo Villoresi Firenze - Teint De Neige" class="perfume-img">
@@ -3357,8 +3464,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/V/VALENTINO/P1000206003/109634-media_1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Valentino - Born In Roma Donna" class="perfume-img">
@@ -3378,8 +3486,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.dsmcdn.com/mnresize/420/620/ty1619/prod/QC/20241230/09/b16dc3a9-06d0-3d20-833f-a4780813718a/1_org_zoom.jpg" alt="Lattafa - Yara" class="perfume-img">
@@ -3399,9 +3508,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.cimri.io/image/1000x1000/jean-paul-gaultier-classique-edp-50-ml-kadin-parfum_117469114.jpg" alt="Jean Paul Gaultier - Classique" class="perfume-img">
             </div>
@@ -3420,8 +3530,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://www.sevil.com.tr/media/catalog/product/cache/6b8245bae7647528e2edd9cb5e275de1/3/6/3614273069557_1.jpg" alt="YSL - Libre Intense" class="perfume-img">
@@ -3441,8 +3552,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.600 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/D/DIOR/564565/242603-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Dior - Miss Dior" class="perfume-img">
@@ -3462,9 +3574,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://www.sevil.com.tr/media/catalog/product/cache/6b8245bae7647528e2edd9cb5e275de1/m/m/mm-25199409000.jpg" alt="Chloe - Nomade" class="perfume-img">
             </div>
@@ -3483,9 +3596,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="unisex">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHF5ZIJfEDwGvHPuLzHOFWJTNdskDLc4Oyqg&s" alt="Tiziana Terenzi - Halley" class="perfume-img">
             </div>
@@ -3504,8 +3618,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">2.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/kk2xtvro.h3s_IMG_01_3508441001039.jpg" alt="Creed - Millesime Impreial" class="perfume-img">
@@ -3525,8 +3640,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.900 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/yroynxzh.bwv_IMG_01_3760260450034.jpg" alt="Montale - Black Oud" class="perfume-img">
@@ -3546,9 +3662,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/A/ARMANI/421923/5669-media_swatch-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Armani - Si Passione" class="perfume-img">
             </div>
@@ -3567,9 +3684,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="unisex">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/J/JO_MALONE_LONDON/420167/20942-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Jo Malone - Orange Blossom" class="perfume-img">
             </div>
@@ -3588,9 +3706,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="kadin">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/productimages/iksvh3b2.4bi_IMG_01_701666411024.jpg" alt="Amouage - Love Tuberose" class="perfume-img">
             </div>
@@ -3609,8 +3728,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.750 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="kadin">
             <div class="cell cell-img">
                 <img src="https://www.sevil.com.tr/media/catalog/product/cache/6b8245bae7647528e2edd9cb5e275de1/3/3/3349668508587_01.jpeg" alt="Paco Rabanne - Lady Million" class="perfume-img">
@@ -3630,9 +3750,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="erkek">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://www.dekantparfum.com.tr/idea/hs/04/myassets/products/265/cartierdeclarition.jpg?revision=1770799832" alt="Cartier - Declaration" class="perfume-img">
             </div>
@@ -3651,9 +3772,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="unisex">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3z0bJcArBkGAbnBU0nBYB03KPAVTn22gTUw&s" alt="Frederic Malle - Carnal Flower" class="perfume-img">
             </div>
@@ -3672,9 +3794,10 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
-         <div class="perfume-item" data-gender="erkek">
+            </div>
+        </div>
+        
+        <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/V/VERSACE/P1000203382/103997-media_principal-1.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Versace - Eros Energy" class="perfume-img">
             </div>
@@ -3693,8 +3816,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="erkek">
             <div class="cell cell-img">
                 <img src="https://media.sephora.eu/content/dam/digital/pim/published/H/HERMS/609507/275262-media_swatch.jpg?scaleWidth=750&scaleHeight=750&scaleMode=fit" alt="Hermes - Terre d'Hermes Eau Givree" class="perfume-img">
@@ -3714,8 +3838,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.500 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://fimgs.net/mdimg/perfume/o.3241.jpg" alt="Montale - Mukhallat" class="perfume-img">
@@ -3735,8 +3860,9 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">1.400 TL</span>
-    </div>
-</div>
+            </div>
+        </div>
+        
         <div class="perfume-item" data-gender="unisex">
             <div class="cell cell-img">
                 <img src="https://cdn.beymen.com/mnresize/505/704/productimages/boelfxup.ih4_IMG_01_8033488154967.jpg" alt="Xerjoff - Alexandria II" class="perfume-img">
@@ -3756,12 +3882,11 @@
             <div class="cell cell-price">
                 <span class="price-label">100 ML</span>
                 <span class="price-value">2.500 TL</span>
+            </div>
+        </div>
+
     </div>
 </div>
-
-
-
-
 
 <script>
     let currentGender = 'all';
@@ -3774,11 +3899,9 @@
         items.sort((a, b) => {
             const nameA = a.getElementsByClassName("perfume-name")[0].textContent.trim().toUpperCase();
             const nameB = b.getElementsByClassName("perfume-name")[0].textContent.trim().toUpperCase();
-            // Türkçe karakter uyumlu alfabetik karşılaştırma kalkanı
             return nameA.localeCompare(nameB, 'tr', { sensitivity: 'base' });
         });
 
-        // Sıralanmış elemanları listeye yeniden basıyoruz
         items.forEach(item => list.appendChild(item));
     });
 
@@ -3802,7 +3925,6 @@
         applyFilters();
     }
 
-    // Gelişmiş Arama Filtresi (X butonunu tetikler)
     function filterPerfumes() { 
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('searchClear');
@@ -3815,7 +3937,6 @@
         applyFilters(); 
     }
 
-    // Arama Temizleme Fonksiyonu
     function clearSearch() {
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('searchClear');
@@ -3830,6 +3951,9 @@
         const filterText = searchInput.value.toUpperCase();
         const list = document.getElementById('perfumeList');
         const items = list.getElementsByClassName('perfume-item');
+        const noResultContainer = document.getElementById('noResultContainer');
+
+        let visibleCount = 0; // Görünür parfüm kalkanı
 
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
@@ -3845,10 +3969,19 @@
 
             if (genderMatch && textMatch) {
                 item.style.setProperty('display', '', 'important'); 
+                visibleCount++;
             } else {
                 item.style.setProperty('important', 'none', 'important');
                 item.style.setProperty('display', 'none', 'important');
             }
+        }
+
+        // 🚀 AKILLI BULUNAMADI SİSTEMİ
+        // Eğer hiçbir parfüm filtreye uymadıysa uyarıyı aç, varsa gizle
+        if (visibleCount === 0) {
+            noResultContainer.style.display = 'block';
+        } else {
+            noResultContainer.style.display = 'none';
         }
     }
 </script>
